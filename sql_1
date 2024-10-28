@@ -1,0 +1,27 @@
+-- for each employee 
+-- calculate avg salary in office
+-- return the salary > avg employees
+
+SELECT *
+FROM employees e
+WHERE salary > (
+	SELECT avg(salary)
+    FROM employees
+    WHERE office_id = e.office_id
+------
+SELECT * 
+FROM invoices
+WHERE invoice_total > ALL (
+  SELECT invoice_total 
+  FROM invoices
+  WHERE client_id = 3
+)
+
+--OR WE CAN USE THE (MAX) AND WRITHE THIS --
+SELECT * 
+FROM invoices 
+WEHERE inovice_total > (
+  SELECT MAX(invoice_total)
+  FROM invoices 
+  WHERE client_id = 3
+)
